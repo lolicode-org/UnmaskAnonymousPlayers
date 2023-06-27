@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "unmaskanonymousplayers",
+  "version": "${version}",
+  "name": "Unmask Anonymous Players",
+  "description": "Reveal anonymous player's identity to trusted ip's for Minecraft servers",
+  "authors": [
+    "KoishiMoe"
+  ],
+  "contact": {
+    "repo": "https://github.com/lolicode-org/Unmask Anonymous Players"
+  },
+  "license": "AGPL-3.0",
+  "icon": "assets/unmaskanonymousplayers/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "server": [
+      "org.lolicode.unmaskanonymousplayers.UnmaskAnonymousPlayers"
+    ]
+  },
+  "mixins": [
+    "unmaskanonymousplayers.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
