@@ -57,6 +57,7 @@ public class ModConfig {
     }
 
     public synchronized boolean ipInWhitelist(String ip) {
+        if (ip == null || ip.isBlank()) return false;
         return whitelistMatchers.stream().anyMatch(matcher -> MatcherWrapper.matches(matcher, ip));
     }
 }

@@ -22,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.net.InetSocketAddress;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +40,12 @@ public class ServerHandshakeNetworkHandlerMixin {
         if (packet.getIntendedState() != NetworkState.STATUS) {
             return;
         }
-        if (!UnmaskAnonymousPlayers.CONFIG.ipInWhitelist(packet.getAddress())) {
+        String ip = "";
+        var address = connection.getAddress();
+        if (address instanceof InetSocketAddress) {
+            ip = ((InetSocketAddress) address).getAddress().getHostAddress();
+        }
+        if (!UnmaskAnonymousPlayers.CONFIG.ipInWhitelist(ip)) {
             return;
         }
         ServerMetadata metadata = server.getServerMetadata();
